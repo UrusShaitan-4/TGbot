@@ -1,1 +1,2 @@
-qwfdq
+print("Test")
+print("Test2")
