@@ -86,3 +86,38 @@
 # client_1.info()
 # client_1.withdraw(12500)
 # client_1.info()
+# Завдання 5
+# Створіть клас Car з атрибутами brand(марка), year(рік
+# випуску), is_ready(чи готовий до поїздки, за замовчування
+# False).
+# Додайте метод start_engine який заводить двигун, і змінює
+# атрибут is_ready
+# Додайте метод move який виводить повідомлення, що
+# автомобіль їде, або ж ще не готовий в залежності від is_ready.
+
+# class Car:
+#
+#     def __init__(self, brand, year):
+#         self.brand = brand
+#         self.year = year
+#         self.is_ready = False
+#
+#
+#     def start_engine(self):
+#         if self.is_ready == False:
+#             self.is_ready = True
+#             print(f"Двигатель с маркой авто: {self.brand} - запущен!")
+#
+#     def move(self):
+#         if self.is_ready == True:
+#             print(f"Автомобиль с маркой : {self.brand} поехал!")
+#         else:
+#             print(f"Автомобиль с маркой : {self.brand} не заведен!")
+#
+# auto1 = Car("Toyota", 5)
+# auto2 = Car("Opel", 11)
+#
+# auto2.start_engine()
+# auto1.move()
+# auto2.move()
+
