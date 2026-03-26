@@ -37,7 +37,7 @@
 #     def __init__(self, radius = 0):
 #         self.radius = radius
 #
-#     def s_circle(self):
+#     def get_area(self):
 #         p = 3.14
 #         s = p*pow(self.radius,2)
 #
@@ -46,8 +46,43 @@
 # colo1 = Circle(5)
 # colo2 = Circle(10)
 #
-# result1 = colo1.s_circle()
-# result2 = colo2.s_circle()
+# result1 = colo1.get_area()
+# result2 = colo2.get_area()
 # print(result1)
 # print(result2)
+
+# Завдання 4
+# Створіть клас BankAccount з атрибутами owner та balance.
+# Додайте метод deposit для поповнення рахунку
+# Додайте метод withdraw для зняття грошей з рахунку
+# Додайте метод info для виведення інформації про баланс
+
+# class BankAccount:
 #
+#     def __init__(self,owner, balance):
+#         self.owner = owner
+#         self.balance = balance
+#
+#     def deposit(self, amount):
+#         if amount > 0:
+#             self.balance += amount
+#         else:
+#             print(f"{self.owner}: You cannot deposit negative amount")
+#
+#     def withdraw(self, amount):
+#         if amount > 0 and amount < self.balance:
+#             self.balance -= amount
+#         else:
+#             print(f"{self.owner}: You cannot withdraw not amount")
+#
+#     def info(self):
+#         print(f"{self.owner}: Balance ${self.balance}")
+#
+# client_1 = BankAccount("Bob", 1000)
+# client_2 = BankAccount("Alice", 5000)
+# client_3 = BankAccount("Tom", 500)
+#
+# client_1.deposit(2000)
+# client_1.info()
+# client_1.withdraw(12500)
+# client_1.info()
