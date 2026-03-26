@@ -104,12 +104,12 @@
 #
 #
 #     def start_engine(self):
-#         if self.is_ready == False:
+#         if not self.is_ready:
 #             self.is_ready = True
 #             print(f"Двигатель с маркой авто: {self.brand} - запущен!")
 #
 #     def move(self):
-#         if self.is_ready == True:
+#         if self.is_ready:
 #             print(f"Автомобиль с маркой : {self.brand} поехал!")
 #         else:
 #             print(f"Автомобиль с маркой : {self.brand} не заведен!")
@@ -120,4 +120,109 @@
 # auto2.start_engine()
 # auto1.move()
 # auto2.move()
+
+# Завдання 1 — Клас `BankCard` з лімітами та пін-кодом
+#
+# Створіть клас **BankCard** з атрибутами:
+#
+# *   `owner` — власник картки
+# *   `balance` — поточний баланс
+# *   `pin` — пін-код
+# *   `daily_limit` — денний ліміт зняття грошей
+# *   `withdrawn_today` — сума вже знятих за поточний день
+#
+# **Методи:**
+#
+# 1.  **Метод авторизації по пін-коду**
+#     *   Логіка: перевіряє, чи співпадає введений код з піном картки. Якщо ні — доступ до операцій заборонено.
+#     *   Параметри:
+#         *   `self`
+#         *   `entered_pin` — введений користувачем пін-код
+#
+# 2.  **Метод поповнення рахунку**
+#     *   Логіка: додає суму до балансу, але тільки якщо користувач уже авторизований.
+#     *   Параметри:
+#         *   `self`
+#         *   `amount` — сума поповнення
+#
+# 3.  **Метод зняття грошей**
+#     *   Логіка:
+#         *   перевірити, чи авторизований користувач
+#         *   перевірити, чи вистачає грошей на балансі
+#         *   перевірити, чи не буде перевищено `daily_limit`
+#         *   якщо все ок — зменшити баланс і збільшити `withdrawn_today`
+#     *   Параметри:
+#         *   `self`
+#         *   `amount` — сума для зняття
+#
+# 4.  **Метод скидання денного ліміту** (наприклад, на початку нового дня)
+#     *   Логіка: обнуляє `withdrawn_today`.
+#     *   Параметри:
+#         *   `self`
+#
+
+# class BankCard:
+#
+#     def __init__(self, owner, balance, pin):
+#         self.owner = owner
+#         self.balance = balance
+#         self.pin = pin
+#         self.daily_limit = 10000
+#         self.withdrawn_today = 0
+#
+#     def check_pin(self, entered_pin):
+#         if entered_pin == self.pin:
+#             return True
+#         else:
+#             return False
+#
+#     def deposit(self, amount):
+#         if amount > 0:
+#             self.balance += amount
+#             print(f"Счет пополнен на {amount}")
+#         else:
+#             print(f"{self.owner}: You cannot deposit negative amount")
+#
+#     def show_info(self):
+#         print(f"{self.owner}'s balance is {self.balance}")
+#
+#     def withdraw(self, amount):
+#         if amount <= 0:
+#             print("Сумма должна быть больше нуля.")
+#         elif amount > self.balance:
+#             print("Недостаточно средств на счете.")
+#         elif self.withdrawn_today + amount > self.daily_limit:
+#             print(f"Превышен дневной лимит! Осталось доступно на сегодня: {self.daily_limit - self.withdrawn_today}")
+#         else:
+#             self.balance -= amount
+#             self.withdrawn_today += amount
+#             print(f"Вы сняли: {amount}")
+#
+# user = BankCard("Bob", 1000, "0000")
+#
+#
+# while True:
+#     pin_input = input("Enter a pin number: ")
+#
+#     if pin_input == "exit":
+#         break
+#
+#     if user.check_pin(pin_input):
+#         print("Pin is valid")
+#         user.show_info()
+#
+#         event = input("Выберите снять(1) либо добавить деньги(2): ")
+#         amount = int(input("Введите сумму:"))
+#
+#         if event == "2":
+#             user.deposit(amount)
+#         elif event == "1":
+#             user.withdraw(amount)
+#         else:
+#             print("Нет такой операции")
+#
+#         user.show_info()
+#     else:
+#         print("Invalid pin number")
+
 
