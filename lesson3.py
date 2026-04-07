@@ -150,7 +150,7 @@ class Cart:
 
     def __add__(self, other):
         if not  isinstance(other, Cart):
-            raise TypeError
+            raise TypeError("Не верный формат")
 
         new_cart = self._items + other._items
         new_total = self._total + other._total
