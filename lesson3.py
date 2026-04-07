@@ -137,25 +137,30 @@
 # з них. Виведіть самі кошики. Об’єднайте їх та виведіть
 # кількість товарів в новому кошику та товари в ньому
 #
-# class Cart:
-#     def __init__(self, items: list, total: int):
-#         self._items = items
-#         self._total = total
-#
-#     def __str__(self):
-#         return f'items: {self._items}, total: {self._total}'
-#
-#     def __len__(self):
-#         return len(self._items)
-#
-#     def __add__(self, other):
-#         new_cart = self._items + other._items
-#         new_total = self._total + other._total
-#         return Cart(new_cart, new_total)
-#
-# cart1 = Cart(["Хлеб", "Соль", "Рис"], 45)
-# cart2 = Cart(["Молоко", "Мясо"], 24)
-# print(cart1)
-# print("Длина 2 набора: ",len(cart2))
-# cart3 = cart1+cart2
-# print(cart3)
+class Cart:
+    def __init__(self, items: list, total: int):
+        self._items = items
+        self._total = total
+
+    def __str__(self):
+        return f'items: {self._items}, total: {self._total}'
+
+    def __len__(self):
+        return len(self._items)
+
+    def __add__(self, other):
+        new_cart = self._items + other._items
+        new_total = self._total + other._total
+        return Cart(new_cart, new_total)
+
+    def __contains__(self, item):
+        return item in self._items
+
+cart1 = Cart(["Хлеб", "Соль", "Рис"], 45)
+cart2 = Cart(["Молоко", "Мясо"], 24)
+print(cart1)
+print("Длина 2 набора: ",len(cart2))
+cart3 = cart1+cart2
+print(cart3)
+print("Хлеб" in cart2)
+
