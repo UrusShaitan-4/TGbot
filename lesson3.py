@@ -149,6 +149,9 @@ class Cart:
         return len(self._items)
 
     def __add__(self, other):
+        if not  isinstance(other, Cart):
+            raise TypeError
+
         new_cart = self._items + other._items
         new_total = self._total + other._total
         return Cart(new_cart, new_total)
