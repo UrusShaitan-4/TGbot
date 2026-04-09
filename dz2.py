@@ -97,9 +97,9 @@
 # class Phone:
 #     def __init__(self, max_memory: int):
 #         self._max_memory = max_memory
-#         self._used_memory = 0
-#         self._is_on = False
-#         self._apps = {}
+#         self._used_memory:int = 0
+#         self._is_on: bool = False
+#         self._apps: dict = {}
 #
 #     def show_status(self):
 #         free_memory = self._max_memory - self._used_memory
@@ -171,3 +171,137 @@
 # print()
 # phone15.delete_app("TG")
 # phone15.show_status()
+
+# Завдання 3
+# Створіть клас Автомобіль з атрибутами:
+#  марка
+#  пробіг
+#  рівень пального
+#  витрата пального(л/км) 1 5
+#  чи є справним(за замовчуванням True)
+# Реалізуйте методи:
+#  проїхати певну відстань, має змінитись пробіг та рівень
+# пального, якщо автомобіль справний та достатньо
+# пального
+# З ймовірністю 40% автомобіль може зламатись
+#  ремонт
+#  поповнення пального
+
+# import random
+# class Auto:
+#     def __init__(self, brand:str,fuel_level:float, consumption:float, mileage:int = 0):
+#         self._brand = brand
+#         self._mileage = mileage
+#         self._fuel_level = fuel_level
+#         self._consumption = consumption
+#         self._is_broken = True
+#
+#     def show_info(self):
+#         print(f"Марка: {self._brand} | Пробег: {self._mileage}")
+#         print(f"Показатель бензина {self._fuel_level} л.")
+#         if self._is_broken:
+#             print("Авто исправно!")
+#         else:
+#             print("Авто поломано!")
+#
+#     def move(self, size:int):
+#         if self._is_broken:
+#             fuel_size = size * self._consumption
+#             if self._fuel_level >= fuel_size:
+#                 print("Едем...")
+#                 self._fuel_level -= fuel_size
+#                 self._mileage += size
+#         if random.random() < 0.4:
+#             self._is_broken = False
+#             print("Во время поездки отвалилось колесо...")
+#         else:
+#             print("Отремонтируй автомобиль!")
+#
+#     def repair(self):
+#         if not self._is_broken:
+#             self._is_broken = True
+#             print("Починили колесо.")
+#         else:
+#             print("Авто в порядке - не требуется ремонт")
+#
+#     def add_fuel(self, amount):
+#         if amount > 0:
+#             self._fuel_level+=amount
+#             print(f"Залили {amount} л. бенза")
+#             print(f"В баке: {self._fuel_level} л.")
+#
+#
+# auto1 = Auto("Audi", 5, 0.2)
+# auto1.show_info()
+# print()
+# auto1.move(10)
+# auto1.show_info()
+# print()
+# auto1.repair()
+# auto1.show_info()
+# print()
+# auto1.add_fuel(15)
+
+# Завдання 4
+# Створіть клас Студент з атрибутами:
+#  ім’я
+#  словник з предметами, де ключ – назва предмету,
+# значення – список оцінок
+# Додайте методи:
+#  додати новий предмет
+#  видалити предмет
+#  вчити предмет(якщо отримана оцінка, то додати про це
+# інформацію)
+#  отримати середню оцінку за конкретним предметом
+#  вивести загальну інформацію: ім’я та список предметів
+# з середніми оцінками
+
+# class Student:
+#     def __init__(self, name:str):
+#         self._name = name
+#         self._lesson: dict = {}
+#
+#     def add_lesson(self,lesson_name:str):
+#         if lesson_name not in self._lesson:
+#             self._lesson[lesson_name] = []
+#             print(f"Предмет {lesson_name} добавлен! ")
+#         else:
+#             print("Предмет уже существует!")
+#
+#     def del_lesson(self, lesson_name:str):
+#         if lesson_name in self._lesson:
+#             self._lesson.pop(lesson_name)
+#             print(f"Предмет {lesson_name} удален!")
+#         else:
+#             print("Нет такого предмета!")
+#
+#     def all_info(self):
+#         print(f"Студент {self._name} | Предметы: {self._lesson}")
+#
+#     def study_lesson(self, lesson_name:str, grade:int):
+#         if lesson_name in self._lesson:
+#             self._lesson[lesson_name].append(grade)
+#             print(f"Получена оценка {grade}, по предмету: {lesson_name}")
+#
+#     def get_avg(self, lesson_name:str):
+#         if lesson_name in self._lesson:
+#             grades = self._lesson[lesson_name]
+#
+#             if grades:
+#                 avg = sum(grades)/len(grades)
+#                 return avg
+#             else:
+#                 print("Нет оценок по предмету.")
+#         else:
+#             print("Нет такого предмета в списке.")
+#             return
+#
+#
+# student1 = Student("Bob")
+# student1.add_lesson("Algebra")
+# student1.add_lesson("Biologia")
+# student1.all_info()
+# student1.del_lesson("Biologia")
+# student1.study_lesson("Algebra", 5)
+# student1.all_info()
+# print("Средний бал по Algebra:",student1.get_avg("Algebra"))
