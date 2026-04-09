@@ -305,3 +305,68 @@
 # student1.study_lesson("Algebra", 5)
 # student1.all_info()
 # print("Средний бал по Algebra:",student1.get_avg("Algebra"))
+
+# Завдання 5
+# Створіть клас Магазин з атрибутами:
+#  назва
+#  заробіток
+#  словник з товарами, де ключ – назва товару, значення –
+# кількість на складі
+#  словник з товарами, де ключ – назва товару, значення –
+# ціна
+# Додайте методи:
+#  вивід інформації: назва та список доступних товарів
+#  поповнення складу певним товаром(може бути новий)
+#  оформлення замовлення, якщо товар у достатній
+# кількості доступний
+
+class Store:
+    def __init__(self, name: str):
+        self._name = name
+        self._revenue = 0.0
+        self._inventory = {}
+        self._prices = {}
+
+    def show_info(self):
+        print("Магазин: ", self._name)
+        print("Товары на складе: ")
+        for key, value in self._inventory.items():
+            print(key, " - ", value)
+
+    def add_item(self, item_name: str, quantity: int, price: float = None):
+        if item_name in self._inventory:
+            self._inventory[item_name] += quantity
+        else:
+            self._inventory[item_name] = quantity
+
+        self._prices[item_name] = price
+
+    def new_order(self, item_name: str, quantity: int):
+        if item_name not in self._inventory:
+            print(f"Ошибка: '{item_name}' нет такого товара.")
+            return
+
+        if self._inventory[item_name] >= quantity:
+            price_unit = self._prices[item_name]
+            total_cost = price_unit * quantity
+
+            self._inventory[item_name] -= quantity
+            self._revenue += total_cost
+
+            print(f"Заказ оформлен! Продано '{item_name}' ({quantity} шт.) на сумму {total_cost}.")
+        else:
+            available = self._inventory[item_name]
+            print(f"Недостаточно товара! Вы просите {quantity}, а в наличии всего {available}.")
+
+my_shop = Store("ProTech")
+
+my_shop.add_item("Соль", 10, 20)
+my_shop.add_item("Сахар", 50, 10)
+my_shop.add_item("Гречка", 110, 8)
+my_shop.show_info()
+my_shop.new_order("Соль",5)
+my_shop.new_order("Сахар",60)
+my_shop.new_order("Рис",5)
+
+print()
+print("Выручка:", my_shop._revenue)
