@@ -93,7 +93,7 @@ class Dog(Pet):
             print(f"{self.name} голоден и игнорирует мяч.")
 
 
-my_cat = Cat("Мурка", satiety=70, energy=50)
+my_cat = Cat("Муркa", satiety=70, energy=50)
 my_dog = Dog("Шарик", satiety=20, energy=60)
 
 my_cat.make_sound()
